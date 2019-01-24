@@ -44,7 +44,11 @@ export const deleteTodo = id => dispatch => {
   }).then(() => dispatch(fetchTodos()));
 };
 export const editTodo = (id, text) => dispatch => {
-  fetchApi(API_URL, "POST", { id, text }).then(resp => dispatch(fetchTodos()));
+  fetchApi(`${API_URL}/${id}`).then(({ completed }) => {
+    fetchApi(API_URL, "POST", { id, text, completed }).then(resp =>
+      dispatch(fetchTodos())
+    );
+  });
 };
 export const completeTodo = id => dispatch => {
   fetchApi(`${API_URL}/${id}`).then(({ text, completed }) => {
