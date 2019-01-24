@@ -1,2 +1,2 @@
-export * from "./actions";
+export { setVisibilityFilter } from "./actions";
 export * from "./thunkactions";
